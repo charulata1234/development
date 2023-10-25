@@ -1,51 +1,20 @@
 package com.charu;
 
-class Tasks{
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+import lombok.NoArgsConstructor;
 
+@Data
 
-    private int id;
+@NoArgsConstructor
+@AllArgsConstructor
+class Tasks {
 
-    private String  name;
+    private int taskId;
 
-    private String status;
+    private String taskName;
 
-    public int getId() {
-        return id;
-    }
+    private TaskStatus taskStatus;
 
-    public String getName() {
-        return name;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Tasks [id=" + id + ", name=" + name + ", status=" + status + "]";
-    }
-
-    public Tasks(int id, String name, String status) {
-        this.id = id;
-        this.name = name;
-        this.status = status;
-    }
-
-    
-
-    
 }
