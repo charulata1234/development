@@ -18,10 +18,10 @@ public class Print {
             System.out.println("4. Fetch task by id");
             System.out.println("5. Fetch all tasks");
             System.out.println("6. Fetch tasks by status");
-            System.out.println("7. Search tasks by id");
-            System.out.println("8. Search tasks by name");
-
-
+            System.out.println("7. Search tasks ");
+            System.out.println("8. Search tasks by keyword");
+            System.out.println("9. View task list in ascending order");
+            System.out.println("10.View task list in descending order");
             int option = input.nextInt();
 
             switch (option) {
@@ -56,13 +56,23 @@ public class Print {
                     System.out.print("\n");
                     break;
                 case 7:
-                    System.out.println("Search task by Id");
-                    perfrom.searchByTaskId();
+                    System.out.println("Search task ");
+                    perfrom.exactSearch();
                     System.out.println("\n");
                     break;
                 case 8:
-                    System.out.println("Search task by name");
-                    perfrom.searchByTaskName();
+                    System.out.println("Search task by keyword");
+                    perfrom.fuzzySearch();
+                    System.out.println("\n");
+                    break;
+                case 9:
+                    System.out.print("Sorting ascending");
+                    perfrom.sortDeadlineInAscendingOrder();
+                    System.out.println("\n");
+                    break;
+                case 10:
+                    System.out.print("Sorting descending");
+                    perfrom.sortDeadlineInDescendingOrder();;
                     System.out.println("\n");
                     break;
                 default:

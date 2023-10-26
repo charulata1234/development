@@ -1,5 +1,7 @@
 package com.charu;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Operations {
@@ -18,9 +20,10 @@ public class Operations {
         System.out.println("Enter your taskName please....");
         String taskName = input.next();
 
-        System.out.println("Enter deadline for the task");
+        System.out.println("Enter deadline for the task in dd/MM/yyyy format");
         String taskDeadline = input.next();
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(taskDeadline, formatter);
         System.out.println("Confirm status");
         System.out.print("\n");
         System.out.println("1 --> INPROGRES");
@@ -31,7 +34,7 @@ public class Operations {
         try {
             if (inputStatus.equalsIgnoreCase(TaskStatus.INPROGRESS.getValue())
                     || inputStatus.equalsIgnoreCase("inprogress")) {
-                task = new Tasks(newTask, taskName, TaskStatus.INPROGRESS, taskDeadline);
+                task = new Tasks(newTask, taskName, TaskStatus.INPROGRESS, date);
             } else {
                 System.out.print("Can't proceed");
                 System.exit(1);
@@ -224,6 +227,93 @@ public class Operations {
         }
     }
 
+    public void exactSearch() {
+        System.out.println("Please select options to be searched from");
+        System.out.println("1. By task id");
+        System.out.println("2. By task name");
+        System.out.println("\n");
+        int inputStatus = input.nextInt();
+        if (inputStatus == 1) {
+            searchByTaskId();
+
+        } else {
+            searchByTaskName();
+        }
+
+    }
+
+    public void fuzzySearch() {
+        System.out.println("Please select options to be searched from");
+        System.out.println("1. By task id");
+        System.out.println("2. By task name");
+        System.out.println("\n");
+        int inputStatus = input.nextInt();
+        if (inputStatus == 1) {
+            fuzzySearchByTaskId();
+
+        } else {
+            fuzzySearchByTaskName();
+        }
+    }
+
+    public void fuzzySearchByTaskId() {
+        System.out.println("Enter task id");
+        int inputStatus = input.nextInt();
+        String input = String.valueOf(inputStatus);
+        ArrayList<String> taskIds = new ArrayList<String>();
+
+        for (int i = 0; i < lists.size(); i++) {
+            taskIds.add(String.valueOf(lists.get(i).getTaskId()));
+
+        }
+        for (int i = 0; i < taskIds.size(); i++) {
+            if (taskIds.get(i).matches("(.*)" + inputStatus + "(.*)")) {
+                System.out.print("\n");
+                System.out.println("***************************************");
+                System.out.print("\n");
+                System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
+                System.out.print("\n");
+
+                System.out.println(
+                        "" + lists.get(i).getTaskId() + "        " + "| " + lists.get(i).getTaskName() + "      "
+                                + "|"
+                                + lists.get(i).getTaskStatus() + "  " + "| " + lists.get(i).getDeadline());
+                System.out.print("\n");
+
+            } else {
+                System.out.println("no such taskids");
+            }
+        }
+    }
+
+    public void fuzzySearchByTaskName() {
+        System.out.println("Enter task name");
+        String inputStatus = input.next();
+        ArrayList<String> taskName = new ArrayList<String>();
+        for (int i = 0; i < lists.size(); i++) {
+            taskName.add(lists.get(i).getTaskName());
+        }
+        for (int i = 0; i < taskName.size(); i++) {
+            if (taskName.get(i).matches("(.*)" + inputStatus + "(.*)")) {
+
+                System.out.print("\n");
+                System.out.println("***************************************");
+                System.out.print("\n");
+                System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
+                System.out.print("\n");
+
+                System.out.println(
+                        "" + lists.get(i).getTaskId() + "        " + "| " + lists.get(i).getTaskName() + "      "
+                                + "|"
+                                + lists.get(i).getTaskStatus() + "  " + "| " + lists.get(i).getDeadline());
+                System.out.print("\n");
+
+            } else {
+                System.out.println("no such task names");
+            }
+        }
+    }
+
     public void searchByTaskId() {
 
         System.out.println("Please enter taskId to be searched");
@@ -315,5 +405,52 @@ public class Operations {
         return;
 
     }
-    
+
+    public void sortDeadlineInAscendingOrder() {
+
+        Collections.sort(lists, new DeadlineAscendingComparator());
+        Iterator itr = lists.iterator();
+        while (itr.hasNext()) {
+
+            Tasks tsk = (Tasks) itr.next();
+            System.out.print("\n");
+            System.out.println("***************************************");
+            System.out.print("\n");
+            System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
+            System.out.print("\n");
+            System.out.println("***************************************");
+
+            System.out.println(
+                    "" + tsk.getTaskId() + "        " + "| " + tsk.getTaskName() + "      "
+                            + "|"
+                            + tsk.getTaskStatus() + "  " + "| " + tsk.getDeadline());
+            System.out.print("\n");
+
+        }
+
+    }
+
+    public void sortDeadlineInDescendingOrder() {
+
+        Collections.sort(lists, new DeadlineDescendingComparator());
+        Iterator itr = lists.iterator();
+        while (itr.hasNext()) {
+
+            Tasks tsk = (Tasks) itr.next();
+            System.out.print("\n");
+            System.out.println("***************************************");
+            System.out.print("\n");
+            System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
+            System.out.print("\n");
+            System.out.println("***************************************");
+
+            System.out.println(
+                    "" + tsk.getTaskId() + "        " + "| " + tsk.getTaskName() + "      "
+                            + "|"
+                            + tsk.getTaskStatus() + "  " + "| " + tsk.getDeadline());
+            System.out.print("\n");
+
+        }
+
+    }
 }

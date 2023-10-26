@@ -1,5 +1,8 @@
 package com.charu;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -17,6 +20,6 @@ class Tasks {
 
     private TaskStatus taskStatus;
 
-    private String deadline;
+    private LocalDate deadline;
 
 }
