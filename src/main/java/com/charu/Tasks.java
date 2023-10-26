@@ -17,4 +17,6 @@ class Tasks {
 
     private TaskStatus taskStatus;
 
+    private String deadline;
+
 }

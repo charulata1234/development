@@ -1,7 +1,5 @@
 package com.charu;
 
-import java.util.Scanner;
-
 import java.util.*;
 
 public class Operations {
@@ -20,7 +18,11 @@ public class Operations {
         System.out.println("Enter your taskName please....");
         String taskName = input.next();
 
+        System.out.println("Enter deadline for the task");
+        String taskDeadline = input.next();
+
         System.out.println("Confirm status");
+        System.out.print("\n");
         System.out.println("1 --> INPROGRES");
         System.out.println("2 --> TODO");
         System.out.println("3 --> DONE");
@@ -29,7 +31,7 @@ public class Operations {
         try {
             if (inputStatus.equalsIgnoreCase(TaskStatus.INPROGRESS.getValue())
                     || inputStatus.equalsIgnoreCase("inprogress")) {
-                task = new Tasks(newTask, taskName, TaskStatus.INPROGRESS);
+                task = new Tasks(newTask, taskName, TaskStatus.INPROGRESS, taskDeadline);
             } else {
                 System.out.print("Can't proceed");
                 System.exit(1);
@@ -42,14 +44,14 @@ public class Operations {
             ;
         }
         System.out.print("\n");
-        System.out.println("**************************");
+        System.out.println("***************************************");
         System.out.print("\n");
-        System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status");
+        System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
         System.out.print("\n");
         System.out.println(lists.get(0).getTaskId() + "        " + "| " + lists.get(0).getTaskName() + "      " + "|"
-                + lists.get(0).getTaskStatus());
+                + lists.get(0).getTaskStatus() + "  " + "| " + lists.get(0).getDeadline());
         System.out.print("\n");
-        System.out.println("**************************");
+        System.out.println("***************************************");
         System.out.println();
     }
 
@@ -87,15 +89,17 @@ public class Operations {
                     if (lists.get(i).getTaskId() == taskId) {
 
                         System.out.print("\n");
-                        System.out.println("**************************");
+                        System.out.println("***************************************");
                         System.out.print("\n");
-                        System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status");
+                        System.out.println(
+                                "Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
                         System.out.print("\n");
                         System.out.println(
                                 lists.get(i).getTaskId() + "        " + "| " + lists.get(i).getTaskName() + "      "
-                                        + "|" + lists.get(i).getTaskStatus());
+                                        + "|"
+                                        + lists.get(i).getTaskStatus() + "  " + "| " + lists.get(i).getDeadline());
                         System.out.print("\n");
-                        System.out.println("**************************");
+                        System.out.println("***************************************");
                         System.out.println();
                     } else {
                         System.out.println("Sorry ! above taskId not present");
@@ -114,9 +118,9 @@ public class Operations {
             System.out.println("Enter status of the tasks to be fetched");
             String status = input.next();
             System.out.print("\n");
-            System.out.println("**************************");
+            System.out.println("***************************************");
             System.out.print("\n");
-            System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status");
+            System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
             System.out.print("\n");
             try {
                 for (int i = 0; i < lists.size(); i++) {
@@ -125,7 +129,8 @@ public class Operations {
                         if (lists.get(i).getTaskStatus().equals(TaskStatus.INPROGRESS)) {
 
                             System.out.println(lists.get(i).getTaskId() + "        " + "| " + lists.get(i).getTaskName()
-                                    + "      " + "|" + lists.get(i).getTaskStatus());
+                                    + "      " + "|"
+                                    + lists.get(i).getTaskStatus() + "  " + "| " + lists.get(i).getDeadline());
 
                         }
 
@@ -137,7 +142,7 @@ public class Operations {
                 System.out.println("Exception occurred while fetching task by status");
             }
             System.out.print("\n");
-            System.out.println("**************************");
+            System.out.println("***************************************");
             System.out.print("\n");
         }
     }
@@ -148,9 +153,9 @@ public class Operations {
         } else {
             System.out.println("----------All tasks are listed below-------");
             System.out.print("\n");
-            System.out.println("**************************");
+            System.out.println("***************************************");
             System.out.print("\n");
-            System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status");
+            System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
             System.out.print("\n");
 
             try {
@@ -158,13 +163,14 @@ public class Operations {
 
                     System.out.println(
                             "" + lists.get(i).getTaskId() + "        " + "| " + lists.get(i).getTaskName() + "      "
-                                    + "|" + lists.get(i).getTaskStatus());
+                                    + "|"
+                                    + lists.get(i).getTaskStatus() + "  " + "| " + lists.get(i).getDeadline());
                     System.out.print("\n");
                 }
             } catch (Exception e) {
                 System.out.printf("Exception occurred while fetching all tasks");
             }
-            System.out.println("**************************");
+            System.out.println("***************************************");
             System.out.print("\n");
         }
     }
@@ -238,15 +244,16 @@ public class Operations {
                 System.out.println("TaskId is present" + " " + taskIds[mid]);
 
                 System.out.print("\n");
-                System.out.println("**************************");
+                System.out.println("***************************************");
                 System.out.print("\n");
-                System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status");
+                System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
                 System.out.print("\n");
-                System.out.println("**************************");
+                System.out.println("***************************************");
 
                 System.out.println(
                         "" + lists.get(mid).getTaskId() + "        " + "| " + lists.get(mid).getTaskName() + "      "
-                                + "|" + lists.get(mid).getTaskStatus());
+                                + "|"
+                                + lists.get(mid).getTaskStatus() + "  " + "| " + lists.get(mid).getDeadline());
                 System.out.print("\n");
 
                 return;
@@ -261,4 +268,52 @@ public class Operations {
         System.out.println("Sorry!task id not present");
         return;
     }
+
+    public void searchByTaskName() {
+
+        System.out.println("Please enter taskName to be searched");
+        int listsSize = lists.size();
+        String[] taskNames = new String[listsSize];
+        for (int i = 0; i < taskNames.length; i++) {
+            taskNames[i] = lists.get(i).getTaskName();
+
+        }
+        int i = 0;
+        int j = taskNames.length - 1;
+        int mid;
+        Arrays.sort(taskNames);
+        String inputStatus = input.next();
+        while (i <= j) {
+            mid = i + (j - i) / 2;
+            int res = inputStatus.compareTo(taskNames[mid]);
+            if (res == 0) {
+                System.out.println("Task name is present" + " " + taskNames[mid]);
+
+                System.out.print("\n");
+                System.out.println("***************************************");
+                System.out.print("\n");
+                System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
+                System.out.print("\n");
+                System.out.println("***************************************");
+
+                System.out.println(
+                        "" + lists.get(mid).getTaskId() + "        " + "| " + lists.get(mid).getTaskName() + "      "
+                                + "|"
+                                + lists.get(mid).getTaskStatus() + "  " + "| " + lists.get(mid).getDeadline());
+                System.out.print("\n");
+
+                return;
+            }
+            if (res > 0) {
+                i = mid + 1;
+
+            } else {
+                j = mid - 1;
+            }
+        }
+        System.out.println("Sorry! task name not present");
+        return;
+
+    }
+    
 }

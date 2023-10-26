@@ -19,6 +19,8 @@ public class Print {
             System.out.println("5. Fetch all tasks");
             System.out.println("6. Fetch tasks by status");
             System.out.println("7. Search tasks by id");
+            System.out.println("8. Search tasks by name");
+
 
             int option = input.nextInt();
 
@@ -56,6 +58,11 @@ public class Print {
                 case 7:
                     System.out.println("Search task by Id");
                     perfrom.searchByTaskId();
+                    System.out.println("\n");
+                    break;
+                case 8:
+                    System.out.println("Search task by name");
+                    perfrom.searchByTaskName();
                     System.out.println("\n");
                     break;
                 default:
