@@ -22,6 +22,7 @@ public class Print {
             System.out.println("8. Search tasks by keyword");
             System.out.println("9. View task list in ascending order");
             System.out.println("10.View task list in descending order");
+            System.out.println("11. Pagination");
             int option = input.nextInt();
 
             switch (option) {
@@ -73,6 +74,12 @@ public class Print {
                 case 10:
                     System.out.print("Sorting descending");
                     perfrom.sortDeadlineInDescendingOrder();;
+                    System.out.println("\n");
+                    break;
+                case 11:
+                System.out.print("page");
+                    perfrom.pagination();;
+
                     System.out.println("\n");
                     break;
                 default:

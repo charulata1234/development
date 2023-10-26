@@ -453,4 +453,84 @@ public class Operations {
         }
 
     }
+
+    public void pagination() {
+        System.out.println("Enter page size");
+        int pageSize = input.nextInt();
+        int pgs = pageSize;
+        System.out.print("Enter page no");
+        ArrayList<Integer> pageind = new ArrayList<Integer>();
+        int pageNo = input.nextInt();
+        if (pageSize > lists.size()) {
+            int b = lists.size();
+            System.out.printf("Please provide pageSize lesser than equal to: ", b);
+            return;
+        }
+        int totalPages = 1;
+        pageSize = lists.size() - pageSize;
+        while (pageSize != 0 && !(pageSize < 0)) {
+            pageSize = pageSize - pgs;
+            if (pageSize < 0) {
+                pageind.add(Math.abs(pageSize));
+            }
+            pageind.add(pageSize);
+            totalPages = totalPages + 1;
+        }
+
+        if (pageNo > totalPages) {
+            System.out.printf("Please provide pageNo lesser than equal to:", totalPages);
+            return;
+        }
+        if (pageNo == 1) {
+            for (int i = 0; i < pgs; i++) {
+                System.out.print("\n");
+                System.out.println("***************************************");
+                System.out.print("\n");
+                System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
+                System.out.print("\n");
+
+                System.out.println(
+                        "" + lists.get(i).getTaskId() + "        " + "| " + lists.get(i).getTaskName() + "      "
+                                + "|"
+                                + lists.get(i).getTaskStatus() + "  " + "| " + lists.get(i).getDeadline());
+                System.out.print("\n");
+
+            }
+            return;
+        } else if (pageNo == pageind.size()) {
+
+            for (int i = lists.size() - 1; i < lists.size(); i++) {
+                System.out.print("\n");
+                System.out.println("***************************************");
+                System.out.print("\n");
+                System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
+                System.out.print("\n");
+
+                System.out.println(
+                        "" + lists.get(i).getTaskId() + "        " + "| " + lists.get(i).getTaskName() + "      "
+                                + "|"
+                                + lists.get(i).getTaskStatus() + "  " + "| " + lists.get(i).getDeadline());
+                System.out.print("\n");
+
+            }
+            return;
+        } else if (pageNo != 1 && pageNo != pageind.size() - 1) {
+            int pageLimit = (pageNo - 1) * (pgs);
+            for (int i = pageLimit; i < pageLimit + pgs; i++) {
+                System.out.print("\n");
+                System.out.println("***************************************");
+                System.out.print("\n");
+                System.out.println("Serial No" + "|" + "Task Name" + "|" + "Status" + "      " + "|" + "Deadline");
+                System.out.print("\n");
+
+                System.out.println(
+                        "" + lists.get(i).getTaskId() + "        " + "| " + lists.get(i).getTaskName() + "      "
+                                + "|"
+                                + lists.get(i).getTaskStatus() + "  " + "| " + lists.get(i).getDeadline());
+                System.out.print("\n");
+
+            }
+            return;
+        }
+    }
 }
