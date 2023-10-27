@@ -73,12 +73,14 @@ public class Print {
                     break;
                 case 10:
                     System.out.print("Sorting descending");
-                    perfrom.sortDeadlineInDescendingOrder();;
+                    perfrom.sortDeadlineInDescendingOrder();
+                    ;
                     System.out.println("\n");
                     break;
                 case 11:
-                System.out.print("page");
-                    perfrom.pagination();;
+                    System.out.print("page");
+                    perfrom.pagination();
+                    ;
 
                     System.out.println("\n");
                     break;
